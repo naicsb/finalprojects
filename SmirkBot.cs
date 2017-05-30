@@ -49,18 +49,6 @@ namespace SmirkBotv2
                 x.AllowMentionPrefix = true;
             });
             var commands = discord.GetService<CommandService>();
-            commands.CreateCommand("kart") //for Kartik and spAnser's bot - this works individually of everything else
-           .Do(async (e) =>
-           {
-               while (kartstop <= 10)
-               {
-                   await e.Channel.SendMessage("!hitrate");
-                   System.Threading.Thread.Sleep(3600000);
-                   kartstop++;
-               }
-                   
-                   
-           });
             //Signups
             commands.CreateCommand("create").Parameter("event", ParameterType.Multiple)
             .Do(async (e) =>
@@ -264,7 +252,16 @@ namespace SmirkBotv2
                                 {
                                     await e.Channel.SendMessage("The Mafia Won!");
                                 }
-                                for (int i = 0; i < 3; i++)
+                            }
+                            else if (list[x - 1].Equals("Mafia Goon") == true)
+                            {
+                                await e.Channel.SendMessage("The Town Won!");
+                            }
+                            else
+                            {
+                                await e.Channel.SendMessage("The Mafia Won!");
+                            }
+                            for (int i = 0; i < 3; i++)
                                 {
                                     players[i] = "";
                                     nlist = new string[3];
@@ -275,15 +272,6 @@ namespace SmirkBotv2
                                 }
                                 ss3flag = false;
                                 ingameflag = false;
-                            }
-                            else if (list[x - 1].Equals("Mafia Goon") == true)
-                            {
-                                await e.Channel.SendMessage("The Town Won!");
-                            }
-                            else
-                            {
-                                await e.Channel.SendMessage("The Mafia Won!");
-                            }
                         }
                     }
                 }
